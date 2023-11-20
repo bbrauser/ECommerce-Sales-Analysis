@@ -10,8 +10,8 @@ def cust_seg():
         dbname = os.environ['DBNAME'],
         user = 'postgres',
         password = os.environ['PASSWORD'],
-        host = 'localhost',
-        port = '5433'
+        host = os.environ['HOST'],
+        port = os.environ['PORT']
     )
     cursor = connection.cursor()
     query = """
@@ -56,4 +56,4 @@ if __name__ == "__main__":
     sales_df = cust_seg()
     
     # Save the DataFrame to a CSV
-    sales_df.to_csv(os.environ['TABLEAU_CUST_SEG'], index=False)
+    sales_df.to_csv('tableau/data_sources/cust_seg.csv', index=False)

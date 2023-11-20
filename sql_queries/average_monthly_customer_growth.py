@@ -10,8 +10,8 @@ def avg_cust_growth():
         dbname = os.environ['DBNAME'],
         user = 'postgres',
         password = os.environ['PASSWORD'],
-        host = 'localhost',
-        port = '5433'
+        host = os.environ['HOST'],
+        port = os.environ['PORT']
     )
     cursor = connection.cursor()
     query = """
@@ -57,4 +57,4 @@ if __name__ == "__main__":
     sales_df = avg_cust_growth()
     
     # Save the DataFrame to a CSV
-    sales_df.to_csv(os.environ['TABLEAU_AVG_MONTH_GROWTH'], index=False)
+    sales_df.to_csv('tableau/data_sources/avg_cust_growth.csv', index=False)

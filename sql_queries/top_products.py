@@ -10,8 +10,8 @@ def top_10_products():
         dbname = os.environ['DBNAME'],
         user = 'postgres',
         password = os.environ['PASSWORD'],
-        host = 'localhost',
-        port = '5433'
+        host = os.environ['HOST'],
+        port = os.environ['PORT']
     )
     cursor = connection.cursor()
     query = """
@@ -54,4 +54,4 @@ if __name__ == "__main__":
     sales_df = top_10_products()
     
     # Save the DataFrame to a CSV
-    sales_df.to_csv(os.environ['TABLEAU_TOP_10'], index=False)
+    sales_df.to_csv('tableau/data_sources/top_10_products.csv', index=False)
